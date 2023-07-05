@@ -24,8 +24,12 @@ public class LogController {
     }
 
     @GetMapping("/transaction")
-    public String createTransaction() {
-        // Add logic here to create a transaction
-        return "Transaction created";
+    public LogEntry createTransaction() {
+        // Save a new log entry with current timestamp and endpoint
+        LogEntry logEntry = new LogEntry("/transaction", new Date());
+        logEntryRepository.save(logEntry);
+
+        // Return the saved log entry
+        return logEntry;
     }
 }
