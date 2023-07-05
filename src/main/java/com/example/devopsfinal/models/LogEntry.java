@@ -19,7 +19,6 @@ public class LogEntry {
         this.timestamp = timestamp;
     }
     // getters and setters
-
     public String getEndpoint() {
         return endpoint;
     }
