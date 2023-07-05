@@ -1,4 +1,5 @@
 package com.example.devopsfinal.controllers;
+import com.example.devopsfinal.models.LogEntry;
 import com.example.devopsfinal.repositories.LogEntryRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,9 +15,12 @@ public class LogController {
         this.logEntryRepository = logEntryRepository;
     }
     @GetMapping("/logs")
-    public String showLogs() {
-        // Add logic here to fetch and return logs
-        return "Logs";
+    public List<LogEntry> showLogs() {
+        // Save a new log entry with current timestamp and endpoint
+        logEntryRepository.save(new LogEntry("/logs", new Date()));
+
+        // Fetch all log entries from database and return them
+        return logEntryRepository.findAll();
     }
 
     @GetMapping("/transaction")
