@@ -16,20 +16,15 @@ public class LogController {
     }
     @GetMapping("/logs")
     public List<LogEntry> showLogs() {
-        // Save a new log entry with current timestamp and endpoint
-        logEntryRepository.save(new LogEntry("/logs", new Date()));
-
-        // Fetch all log entries from database and return them
+        // Just return the logs without creating a new one
         return logEntryRepository.findAll();
     }
 
     @GetMapping("/transaction")
-    public LogEntry createTransaction() {
-        // Save a new log entry with current timestamp and endpoint
+    public String createTransaction() {
+        // This should create a new log entry when accessed
         LogEntry logEntry = new LogEntry("/transaction", new Date());
         logEntryRepository.save(logEntry);
-
-        // Return the saved log entry
-        return logEntry;
+        return "A new transaction has been created.";
     }
 }
